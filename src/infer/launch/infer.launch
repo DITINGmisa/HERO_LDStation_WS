@@ -1,0 +1,10 @@
+<launch>
+<!-- 需要临场快速改的写在python那边的config.py，一般不用临场改但需要调试改的写在这里 -->
+    <include file="$(find livox_ros_driver)/launch/livox_lidar.launch"/>
+    <param name="yolov5_engine_car" value="$(find infer)/model/yolov5s_car.engine"/>
+    <param name="yolov5_engine_armor" value="$(find infer)/model/yolov5s_armor_v2.engine"/>
+    <param name="car_conf" value="0.45"/>
+    <param name="car_nms" value="0.5"/>
+    <param name="armor_conf" value="0.80"/>
+    <node pkg="infer" type="infer" name="infer" output="screen"/>
+</launch>

@@ -1,0 +1,15 @@
+# 不需要上传的文件
+.vscode
+build/*
+devel/*
+src/camera_lidar_calibration/cali/bag/*
+src/camera_lidar_calibration/cali/pcd/*
+src/camera_lidar_calibration/cali/cali_ImageL/*
+src/camera_lidar_calibration/cali/cali_ImageR/*
+src/camera_lidar_calibration/cali/ImageL/*
+src/camera_lidar_calibration/cali/ImageR/*
+# src/camera_lidar_calibration/**.zip
+src/infer/model/*
+.catkin_workspace
+Camera
+src/cam_server
