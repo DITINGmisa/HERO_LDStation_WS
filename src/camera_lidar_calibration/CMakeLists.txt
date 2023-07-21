@@ -70,5 +70,13 @@ target_link_libraries(projectCloud ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 add_executable(colorLidar src/color_lidar_display.cpp src/common.h)
 target_link_libraries(colorLidar ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${CERES_LIBRARIES})
 
+catkin_install_python(PROGRAMS
+scripts/get_sensor_data.py
+scripts/MarkPhoto.py
+scripts/caliEntry.py
+scripts/MarkPCD.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
 
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# 使用service来控制rosbag的录制和停止，暂时不用
  
 import roslaunch
 import rospy

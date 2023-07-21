@@ -34,7 +34,7 @@ def __callback_1(event,x,y,flags,param):
         param["pick_point"] = [corner[0],corner[1]]
         cv2.circle(param["pick_img"],(x,y),2,(0,255,0),1)
 
-def locate_pick(frame_dir, num):
+def locate_pick(frame_dir, param_path, num):
     '''
     手动四点标定
 
@@ -45,7 +45,7 @@ def locate_pick(frame_dir, num):
     tips = ['left_top', 'left_bottom', 'right_bottom','right_top' ]
     frame = cv2.imread(os.path.join(frame_dir, f"{num}.bmp"))
     # 使用内参矩阵进行畸变矫正，存在img文件夹同级的文件夹中
-    with open(frame_dir + '../parameters/intrinsic.txt', 'r') as f:
+    with open(param_path, 'r') as f:
         f.readline()
         m = np.zeros((3, 3))
         for i in range(3):
@@ -128,7 +128,7 @@ def locate_pick(frame_dir, num):
             if key == ord('q') & 0xFF: # 直接退出标定，比如你来不及了
                 cv2.destroyWindow(info["pick_winname"])
                 cv2.destroyWindow(info["zoom_winname"])
-                return False,None,None
+                return False
             info["pick_flag"] = False
         else:
             cv2.waitKey(1)
@@ -138,12 +138,31 @@ def locate_pick(frame_dir, num):
             cv2.destroyWindow(info["zoom_winname"])
             return pick_point
 
-frame_dir,num,out_file = 'ImageL/', 10, 'corner_photo.txt'
+img_path = ['src/camera_lidar_calibration/cali/cali_ImageL/', 'src/camera_lidar_calibration/cali/cali_ImageR/']
+param_path = ['src/camera_lidar_calibration/cali/param/intrinsicL.txt', 'src/camera_lidar_calibration/cali/param/intrinsicR.txt']
+out_file = ['src/camera_lidar_calibration/cali/param/corner_photoL.txt', 'src/camera_lidar_calibration/cali/param/corner_photoR.txt']
+
+
 points = []
-for i in range(num):
-    points.append(locate_pick(frame_dir, i))
-with open(out_file, 'w') as f:
+num = len(os.listdir(img_path[0]))
+assert num == len(os.listdir(img_path[1]))
+for id in range(2):
+    if id == 0:
+        continue
     for i in range(num):
-        for j in range(4):
-            f.write(f"{points[i][j][0]:.4f} {points[i][j][1]:.4f}\n")
+        print(f"Processing {img_path[id]}{i}.bmp")
+        result = locate_pick(img_path[id], param_path[id], i)
+        if not result:
+            print("退出标记")
+            break
+        points.append(result)
+    if not len(points) == num:
+        print(points)
+        print("选择点数错误，退出")
+        break
+    with open(out_file[id], 'w') as f:
+        for i in range(num):
+            for j in range(4):
+                f.write(f"{points[i][j][0]:.4f} {points[i][j][1]:.4f}\n")
+    points.clear()
 

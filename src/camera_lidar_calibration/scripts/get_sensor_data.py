@@ -6,16 +6,14 @@ import time
 import signal
 
 
-sys.path.append('/home/ditingmisa/RM/HERO_23_LDStation')
-
-from radar_class.camera import Camera_Thread
-img_pathL = '/home/ditingmisa/RM/HERO_LDStation_WS/src/camera_lidar_calibration/cali/ImageL/'
-img_pathR = '/home/ditingmisa/RM/HERO_LDStation_WS/src/camera_lidar_calibration/cali/ImageR/'
-cali_img_pathL = '/home/ditingmisa/RM/HERO_LDStation_WS/src/camera_lidar_calibration/cali/cali_ImageL/'
-cali_img_pathR = '/home/ditingmisa/RM/HERO_LDStation_WS/src/camera_lidar_calibration/cali/cali_ImageR/'
-project_pathL = None #'/home/ditingmisa/RM/HERO_LDStation_WS/src/lcamera_lidar_calibration/cali/projection/zerosL.png' 是否将雷达点云投影叠加到图像上
-project_pathR = None #'/home/ditingmisa/RM/HERO_LDStation_WS/src/camera_lidar_calibration/cali/projection/zerosR.png' 是否将雷达点云投影叠加到图像上
-bag_path = '/home/ditingmisa/RM/HERO_LDStation_WS/src/camera_lidar_calibration/cali/bag/'
+from camera import Camera_Thread
+img_pathL = 'src/camera_lidar_calibration/cali/ImageL/'
+img_pathR = 'src/camera_lidar_calibration/cali/ImageR/'
+cali_img_pathL = 'src/camera_lidar_calibration/cali/cali_ImageL/'
+cali_img_pathR = 'src/camera_lidar_calibration/cali/cali_ImageR/'
+project_pathL = None #'src/lcamera_lidar_calibration/cali/projection/zerosL.png' 是否将雷达点云投影叠加到图像上
+project_pathR = None #'src/camera_lidar_calibration/cali/projection/zerosR.png' 是否将雷达点云投影叠加到图像上
+bag_path = 'src/camera_lidar_calibration/cali/bag/'
 cap1 = Camera_Thread(1)
 cap2 = Camera_Thread(0)# 0R 1L to 1L 2R
 c = ""
@@ -45,7 +43,7 @@ while c != 'q':
         if bag_path:
             name = time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) # 防止重名
             # 启动子进程
-            cmd = str.format("%s '%s'" % ("/home/ditingmisa/RM/HERO_LDStation_WS/src/camera_lidar_calibration/script/record.sh",
+            cmd = str.format("%s '%s'" % ("src/camera_lidar_calibration/scripts/record.sh",
                                       f"rosbag record /livox/lidar -O {bag_path}{name}.bag"))
             cc = str.format(f"rosbag record /livox/lidar -O {bag_path}{name}.bag")
             print(cmd)
@@ -104,12 +102,17 @@ while c != 'q':
         for i, bag in enumerate(sorted(os.listdir(bag_path))):
             if bag.endswith('.bag'):
                 os.system(f"cp {bag_path}{bag} {bag_path}{i}.bag")
+                if os.path.exists(bag_path.replace('bag/', 'pcd/') + f'{i}.pcd'):
+                    os.remove(bag_path.replace('bag/', 'pcd/') + f'{i}.pcd')
             x = bag.replace('.bag', '.bmp')
             if os.path.isfile(f'{img_pathL}{x}'):
                 os.system(f"cp {img_pathL}{x} {cali_img_pathL}{i}.bmp")
             if os.path.isfile(f'{img_pathR}{x}'):
                 os.system(f"cp {img_pathR}{x} {cali_img_pathR}{i}.bmp")
         os.system("roslaunch camera_lidar_calibration pcdTransfer.launch")
+        for i in range(len(os.listdir(bag_path))):
+            if os.path.exists(bag_path + f'{i}.bag'):
+                os.remove(bag_path + f'{i}.bag')
         
     if c == 'q':
         # 退出

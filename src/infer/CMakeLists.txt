@@ -105,6 +105,10 @@ ${OpenCV_LIBS}
 ${PLATFORM_LIBS}
 ${LIBRT_LIBRARIES} -lrt)
 
+catkin_install_python(PROGRAMS
+scripts/set_param.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 if(UNIX)
 add_definitions(-O2 -pthread)
 endif(UNIX)
