@@ -215,11 +215,11 @@ void TRTInfer_armor::unInitModule()
     this->engine->destroy();
     this->runtime->destroy();
 }
-
+// 使用方法： rosrun infer armor_demo [path to engine] [path to imgDir] [batch_size] [num_classes]
 int main(int argc, char** argv)
 {
-    std::string img_dir = argv[1];
-    std::string engine_file = argv[2];
+    std::string engine_file = argv[1];
+    std::string img_dir = argv[2];
     int batch_size = std::atoi(argv[3]);
     int num_classes = std::atoi(argv[4]);
     std::vector<cv::String> img_names;

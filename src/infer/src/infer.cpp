@@ -76,10 +76,10 @@ infer::armor_item get_armor(int cols, int rows, int x, int y, int car_id, Yolo_a
     infer::armor_item armor;
     if(result.class_id == -1)
     {
-        l = 0;
-        r = 0;
-        t = 0;
-        b = 0;
+        l = (float)1/3 * cols;
+        r = (float)1/2 * cols;
+        t = (float)3/5 * rows;
+        b = (float)4/5 * rows;
     }
     else
     {
@@ -241,7 +241,9 @@ int main(int argc, char** argv)
             // std::cout<<img_results[img_id].carlist.size()<<std::endl;
             // std::cout<<armor_results[i].class_id<<std::endl;
             img_results[img_id].carlist[car_id].conf = armor_results[i].conf;
-            img_results[img_id].carlist[car_id].cls = get_name(armor_results[i].class_id, "armor");
+            std::string name = get_name(armor_results[i].class_id, "armor");
+            if(name != "car_unknown")
+                img_results[img_id].carlist[car_id].cls = name;
             int w = img_results[img_id].carlist[car_id].x1 - img_results[img_id].carlist[car_id].x0;
             int h = img_results[img_id].carlist[car_id].y1 - img_results[img_id].carlist[car_id].y0;
             int l = img_results[img_id].carlist[car_id].x0;

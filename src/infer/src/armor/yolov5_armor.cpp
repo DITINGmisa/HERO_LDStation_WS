@@ -259,8 +259,8 @@ bool parse_args(int argc, char** argv, std::string& wts, std::string& engine, bo
     return true;
 }
 
-// 使用方法：rosrun infer yolov5_demo -d [path to engine] [path to imgDir]
-//         rosrun infer yolov5_demo -s [path to wts] [path to engine] [model type]
+// 使用方法：rosrun infer armor_utils -d [path to engine] [path to imgDir]
+//         rosrun infer armor_utils -s [path to wts] [path to engine] [model type]
 int main(int argc, char** argv) {
     cudaSetDevice(DEVICE);
 
