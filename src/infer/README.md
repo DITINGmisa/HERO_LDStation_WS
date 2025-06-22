@@ -1,136 +1,63 @@
-# YOLOv5
+项目基于TensorRT8.5开发，需要首先安装TensortRT。
 
-TensorRTx inference code base for [ultralytics/yolov5](https://github.com/ultralytics/yolov5).
+下载本项目，编译运行。
 
-## Contributors
-
-<a href="https://github.com/wang-xinyu"><img src="https://avatars.githubusercontent.com/u/15235574?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/BaofengZan"><img src="https://avatars.githubusercontent.com/u/20653176?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/upczww"><img src="https://avatars.githubusercontent.com/u/16224249?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/cesarandreslopez"><img src="https://avatars.githubusercontent.com/u/14029177?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/makaveli10"><img src="https://avatars.githubusercontent.com/u/39617050?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/priteshgohil"><img src="https://avatars.githubusercontent.com/u/43172056?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/rymzt"><img src="https://avatars.githubusercontent.com/u/3270954?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/AsakusaRinne"><img src="https://avatars.githubusercontent.com/u/47343601?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/freedenS"><img src="https://avatars.githubusercontent.com/u/26213470?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/smarttowel"><img src="https://avatars.githubusercontent.com/u/1128528?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/wwqgtxx"><img src="https://avatars.githubusercontent.com/u/582584?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/adujardin"><img src="https://avatars.githubusercontent.com/u/12609780?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/jow905"><img src="https://avatars.githubusercontent.com/u/19189198?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/CristiFati"><img src="https://avatars.githubusercontent.com/u/29705787?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/HaiyangPeng"><img src="https://avatars.githubusercontent.com/u/46739135?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/Armassarion"><img src="https://avatars.githubusercontent.com/u/33727511?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/xupengao"><img src="https://avatars.githubusercontent.com/u/51817015?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/liuqi123123"><img src="https://avatars.githubusercontent.com/u/46275888?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/ASONG0506"><img src="https://avatars.githubusercontent.com/u/26050577?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/bobo0810"><img src="https://avatars.githubusercontent.com/u/26057879?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/Silmeria112"><img src="https://avatars.githubusercontent.com/u/16464837?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/LW-SCU"><img src="https://avatars.githubusercontent.com/u/28128257?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/AdanWang"><img src="https://avatars.githubusercontent.com/u/32757980?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/triple-Mu"><img src="https://avatars.githubusercontent.com/u/92794867?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/xiang-wuu"><img src="https://avatars.githubusercontent.com/u/107029401?s=48&v=4" width="40px;" alt=""/></a>
-<a href="https://github.com/uyolo1314"><img src="https://avatars.githubusercontent.com/u/101853326?s=48&v=4" width="40px;" alt=""/></a>
-
-## Different versions of yolov5
-
-Currently, we support yolov5 v1.0, v2.0, v3.0, v3.1, v4.0, v5.0, v6.0, v6.2
-
-- For yolov5 v6.2, download .pt from [yolov5 release v6.2](https://github.com/ultralytics/yolov5/releases/tag/v6.2), `git clone -b v6.2 https://github.com/ultralytics/yolov5.git` and `git clone -b yolov5-v6.2 https://github.com/wang-xinyu/tensorrtx.git`, then follow how-to-run in [tensorrtx/yolov5-v6.2](https://github.com/wang-xinyu/tensorrtx/tree/yolov5-v6.2/yolov5)
-- For yolov5 v6.0, download .pt from [yolov5 release v6.0](https://github.com/ultralytics/yolov5/releases/tag/v6.0), `git clone -b v6.0 https://github.com/ultralytics/yolov5.git` and `git clone -b yolov5-v6.0 https://github.com/wang-xinyu/tensorrtx.git`, then follow how-to-run in [tensorrtx/yolov5-v6.0](https://github.com/wang-xinyu/tensorrtx/tree/yolov5-v6.0/yolov5).
-- For yolov5 v5.0, download .pt from [yolov5 release v5.0](https://github.com/ultralytics/yolov5/releases/tag/v5.0), `git clone -b v5.0 https://github.com/ultralytics/yolov5.git` and `git clone -b yolov5-v5.0 https://github.com/wang-xinyu/tensorrtx.git`, then follow how-to-run in [tensorrtx/yolov5-v5.0](https://github.com/wang-xinyu/tensorrtx/tree/yolov5-v5.0/yolov5).
-- For yolov5 v4.0, download .pt from [yolov5 release v4.0](https://github.com/ultralytics/yolov5/releases/tag/v4.0), `git clone -b v4.0 https://github.com/ultralytics/yolov5.git` and `git clone -b yolov5-v4.0 https://github.com/wang-xinyu/tensorrtx.git`, then follow how-to-run in [tensorrtx/yolov5-v4.0](https://github.com/wang-xinyu/tensorrtx/tree/yolov5-v4.0/yolov5).
-- For yolov5 v3.1, download .pt from [yolov5 release v3.1](https://github.com/ultralytics/yolov5/releases/tag/v3.1), `git clone -b v3.1 https://github.com/ultralytics/yolov5.git` and `git clone -b yolov5-v3.1 https://github.com/wang-xinyu/tensorrtx.git`, then follow how-to-run in [tensorrtx/yolov5-v3.1](https://github.com/wang-xinyu/tensorrtx/tree/yolov5-v3.1/yolov5).
-- For yolov5 v3.0, download .pt from [yolov5 release v3.0](https://github.com/ultralytics/yolov5/releases/tag/v3.0), `git clone -b v3.0 https://github.com/ultralytics/yolov5.git` and `git clone -b yolov5-v3.0 https://github.com/wang-xinyu/tensorrtx.git`, then follow how-to-run in [tensorrtx/yolov5-v3.0](https://github.com/wang-xinyu/tensorrtx/tree/yolov5-v3.0/yolov5).
-- For yolov5 v2.0, download .pt from [yolov5 release v2.0](https://github.com/ultralytics/yolov5/releases/tag/v2.0), `git clone -b v2.0 https://github.com/ultralytics/yolov5.git` and `git clone -b yolov5-v2.0 https://github.com/wang-xinyu/tensorrtx.git`, then follow how-to-run in [tensorrtx/yolov5-v2.0](https://github.com/wang-xinyu/tensorrtx/tree/yolov5-v2.0/yolov5).
-- For yolov5 v1.0, download .pt from [yolov5 release v1.0](https://github.com/ultralytics/yolov5/releases/tag/v1.0), `git clone -b v1.0 https://github.com/ultralytics/yolov5.git` and `git clone -b yolov5-v1.0 https://github.com/wang-xinyu/tensorrtx.git`, then follow how-to-run in [tensorrtx/yolov5-v1.0](https://github.com/wang-xinyu/tensorrtx/tree/yolov5-v1.0/yolov5).
-
-## Config
-
-- Choose the model n/s/m/l/x/n6/s6/m6/l6/x6 from command line arguments.
-- Input shape defined in yololayer.h
-- Number of classes defined in yololayer.h, **DO NOT FORGET TO ADAPT THIS, If using your own model**
-- INT8/FP16/FP32 can be selected by the macro in yolov5.cpp, **INT8 need more steps, pls follow `How to Run` first and then go the `INT8 Quantization` below**
-- GPU id can be selected by the macro in yolov5.cpp
-- NMS thresh in yolov5.cpp
-- BBox confidence thresh in yolov5.cpp
-- Batch size in yolov5.cpp
-
-## Build and Run
-
-### Detection
-
-1. generate .wts from pytorch with .pt, or download .wts from model zoo
-
-```
-// clone code according to above #Different versions of yolov5
-// download https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5s.pt
-cp {tensorrtx}/yolov5/gen_wts.py {ultralytics}/yolov5
-cd {ultralytics}/yolov5
-python gen_wts.py -w yolov5s.pt -o yolov5s.wts
-// a file 'yolov5s.wts' will be generated.
+```bash
+# 安装本项目
+git clone https://github.com/DITINGmisa/HERO_LDStation_WS.git
+cd HERO_LDStation_WS
+catkin_make
 ```
 
-2. build tensorrtx/yolov5 and run
+infer下会有5个可执行程序，分别为：
 
-```
-cd {tensorrtx}/yolov5/
-// update CLASS_NUM in yololayer.h if your model is trained on custom dataset
-mkdir build
-cd build
-cp {ultralytics}/yolov5/yolov5s.wts {tensorrtx}/yolov5/build
-cmake ..
-make
-sudo ./yolov5 -s [.wts] [.engine] [n/s/m/l/x/n6/s6/m6/l6/x6 or c/c6 gd gw]  // serialize model to plan file
-sudo ./yolov5 -d [.engine] [image folder]  // deserialize and run inference, the images in [image folder] will be processed.
-// For example yolov5s
-sudo ./yolov5 -s yolov5s.wts yolov5s.engine s
-sudo ./yolov5 -d yolov5s.engine ../samples
-// For example Custom model with depth_multiple=0.17, width_multiple=0.25 in yolov5.yaml
-sudo ./yolov5 -s yolov5_custom.wts yolov5.engine c 0.17 0.25
-sudo ./yolov5 -d yolov5.engine ../samples
++ car_utils 原始的检测车的demo，还可以用来转换模型
++ armor_utils 原始的检测装甲的demo，还可以用来转换模型
++ car_demo 封装好的检测车的demo，只可以直接用来检测文件夹
++ armor_demo 封装好的检测装甲的demo，只可以直接用来检测文件夹
++ infer 总的推理程序，会进行顺序的检测车和装甲板
+
+首先把scripts文件夹下的gen_wts.py复制到yolov5的根目录下。
+
+![](https://cdn.nlark.com/yuque/0/2023/png/22969079/1690444284863-73a5347d-198e-4b97-8f9e-9ed039c87215.png)
+
+生成wts文件。
+
+```bash
+python gen_wts.py -w path_to_pt_model -o path_to_wts_model
 ```
 
-3. check the images generated, as follows. _zidane.jpg and _bus.jpg
+将wts文件移动到本功能包的model文件夹下。
 
-4. optional, load and run the tensorrt model in python
+![](https://cdn.nlark.com/yuque/0/2023/png/22969079/1690444737509-a927f073-2a75-4995-8f52-a5b4edc6a28e.png)
 
-```
-// install python-tensorrt, pycuda, etc.
-// ensure the yolov5s.engine and libmyplugins.so have been built
-python yolov5_trt.py
+首先转换模型，我们的模型分别是640*640输入，batch_size为2，class_num为4，<font style="color:rgb(38, 38, 38);">128*128输入，batch_size为4，class_num为12</font>。如果模型参数不同，或者想修改推理时的<font style="color:rgb(38, 38, 38);">batch_size，</font>需要修改yololayer_[xxx].h，yolov5_[xxx].h，[xxx]_infer.h和infer.cpp来适应你的模型。
 
-// Another version of python script, which is using CUDA Python instead of pycuda.
-python yolov5_trt_cuda_python.py
+```bash
+rosrun infer armor_utils -s [path to wts] [path to engine] [model type]
 ```
 
-### Classification
+其中model type有：[n/s/m/l/x/n6/s6/m6/l6/x6 or c/c6 gd gw]，例：
 
-```
-# Download ImageNet labels
-wget https://github.com/joannzhang00/ImageNet-dataset-classes-labels/blob/main/imagenet_classes.txt
-
-# Build and serialize TensorRT engine
-./yolov5-cls -s yolov5s-cls.wts yolov5s-cls.engine s
-
-# Run inference
-./yolov5-cls -d yolov5s-cls.engine ../samples
+```bash
+rosrun infer armor_utils -s src/infer/model/yolov5s_armor_v3.wts src/infer/model/yolov5s_armor_v3.engine s
 ```
 
-# INT8 Quantization
+随后对模型进行检验。
 
-1. Prepare calibration images, you can randomly select 1000s images from your train set. For coco, you can also download my calibration images `coco_calib` from [GoogleDrive](https://drive.google.com/drive/folders/1s7jE9DtOngZMzJC1uL307J2MiaGwdRSI?usp=sharing) or [BaiduPan](https://pan.baidu.com/s/1GOm_-JobpyLMAqZWCDUhKg) pwd: a9wh
+```bash
+rosrun infer armor_utils -d [path to engine] [path to imgDir]
+```
 
-2. unzip it in yolov5/build
+也可以使用demo程序进行检测，目前仅实现了检测功能，可以后续自行拓展。
 
-3. set the macro `USE_INT8` in yolov5.cpp and make
+```bash
+rosrun infer car_demo [path to engine] [path to imgDir] [batch_size] [num_classes]
+```
 
-4. serialize the model and test
+![](https://cdn.nlark.com/yuque/0/2023/jpeg/22969079/1690446327359-94be17c8-ccb8-4cb3-93d7-5d3ee4409564.jpeg)
 
-<p align="center">
-<img src="https://user-images.githubusercontent.com/15235574/78247927-4d9fac00-751e-11ea-8b1b-704a0aeb3fcf.jpg" height="360px;">
-</p>
+对于infer，car的检测器加入了跨类别NMS，armor则只会输出置信度最高的框。参数则通过rosParam传入，可以通过launch文件修改。
 
-## More Information
-
-See the readme in [home page.](https://github.com/wang-xinyu/tensorrtx)
+![](https://cdn.nlark.com/yuque/0/2023/png/22969079/1690447431439-9cfe8c1b-1609-473f-865a-1a68c775547f.png)
 
